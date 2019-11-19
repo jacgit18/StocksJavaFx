@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+
+<AnchorPane fx:id="ApStock" prefHeight="598.0" prefWidth="735.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.red.stocks.fxml.StockController">
+   <children>
+      <TableView fx:id="TB" layoutX="88.0" layoutY="95.0" prefHeight="408.0" prefWidth="560.0">
+        <columns>
+          <TableColumn fx:id="CoSymbol" prefWidth="195.0" text="Stock Symbol">   
+          <cellValueFactory>
+          <PropertyValueFactory property ="symbol" />
+          
+          </cellValueFactory>
+           </TableColumn>
+          
+          <TableColumn fx:id="CoName" minWidth="0.0" prefWidth="168.0" text="Stock Name">
+            <cellValueFactory>
+          <PropertyValueFactory property ="name" />
+          
+          </cellValueFactory>
+                     </TableColumn>
+          
+            <TableColumn fx:id="CoPrice" minWidth="0.0" prefWidth="196.0" text="Current Price">
+                        <cellValueFactory>
+          <PropertyValueFactory property ="price" />
+          
+          </cellValueFactory>
+                       </TableColumn>
+            
+        </columns>
+      </TableView>
+      <Label fx:id="LblTitle" layoutX="350.0" layoutY="46.0" text="Stocks" />
+   </children>
 </AnchorPane>
-
