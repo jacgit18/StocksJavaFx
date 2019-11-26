@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.red.stocks.dao.StockDBDAO;
 import com.red.stocks.fxml.dao.StockDAO;
 import com.red.stocks.fxml.model.Stock;
 
@@ -40,7 +41,7 @@ public class StockController implements Initializable {
 
 		ObservableList<Stock> stocks = TB.getItems();
 		
-		StockDAO dao = new StockDAO(); 
+		StockDBDAO dao = new StockDBDAO(); 
 		List<Stock> allStocks = dao.findAll();
 		
 		for (Stock stock : allStocks) {
