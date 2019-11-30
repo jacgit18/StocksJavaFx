@@ -4,7 +4,10 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.gt;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -12,11 +15,34 @@ import org.bson.conversions.Bson;
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.red.stocks.driver.Water;
 import com.red.stocks.fxml.model.Stock;
 
 public class StockDBDAO implements IQuery<Stock> {
+	/////////////// Basic Version ////////////////////
+//	public List<Stock> findAll() {
+//	List<Stock> list = new ArrayList<Stock>();
+//	
+//	for (int i = 0; i < 10; i++) {
+//	Stock e = new Stock("stock " + i, "name of stock " + i, 3_000f + i);
+//	list.add(e);
+//	}
+//	
+	
+ ////////////////Data Structures functional  Version ///////////////////////////	
+//	List<Stock> list = new ArrayList<Stock>();
+//
+//	IntStream.rangeClosed(1, 30).forEach(e -> {
+//		String symbol = "ibm-" + e;
+//		String name = "international buisness machine" + e;
+//		float price = 30 + e;
+//	});
+//	
+//	
+//	
+//	return list;
+//}
 
 	public List<Stock> findAll() {
 		Gson gson = new Gson();
@@ -44,5 +70,52 @@ public class StockDBDAO implements IQuery<Stock> {
 		
 		return stocks;
 	}
+	
+	@Override
+	public List<Stock> findBy(Map<String, String> map) {
+		List<Stock> stocks = new ArrayList<Stock>();
+		Gson gson = new Gson();
+		Bson bson = new Document();
+
+			if (map.containsKey("symbol")) {
+				String symbolSearch = map.get("symbol");
+				String[] parts = symbolSearch.split(":");
+				
+				if (parts[1].equalsIgnoreCase("all")) {
+					
+				}
+				
+				else if (parts[0].contentEquals("eq:") ) {
+					bson = eq("symbol", parts[1]);
+					
+				}
+				
+				System.out.println(Arrays.toString(parts));
+			}
+		
+		
+			try (MongoClient mc = new MongoClient("localhost", 27017);) {
+				
+				MongoDatabase db = mc.getDatabase("stockdb");
+				MongoCollection<Document> collection = db.getCollection("stocks");
+				
+				
+				FindIterable<Document> list = collection.find(bson);
+
+				for (Document document : list) {
+					String json = document.toJson();
+					Stock stock = gson.fromJson(json, Stock.class);
+					stocks.add(stock);
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				}		
+			
+			
+			return stocks;
+	}
+
 
 }

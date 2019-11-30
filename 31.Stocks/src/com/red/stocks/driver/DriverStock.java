@@ -5,6 +5,8 @@ import org.bson.conversions.Bson;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import com.red.stocks.dao.Water;
+
 import static com.mongodb.client.model.Filters.*;
 
 public class DriverStock {

@@ -1,4 +1,4 @@
-package com.red.stocks.driver;
+package com.red.stocks.dao;
 
 import java.io.IOException;
 
