@@ -16,7 +16,7 @@ import com.mongodb.client.MongoDatabase;
 import com.red.stocks.driver.Water;
 import com.red.stocks.fxml.model.Stock;
 
-public class StockDBDAO {
+public class StockDBDAO implements IQuery<Stock> {
 
 	public List<Stock> findAll() {
 		Gson gson = new Gson();
@@ -26,8 +26,10 @@ public class StockDBDAO {
 		
 		try (MongoClient mc = new MongoClient("localhost", 27017);) {
 			MongoDatabase db = mc.getDatabase("stockdb");
-
+			
 			FindIterable<Document> list = db.getCollection("stocks").find();
+
+//			FindIterable<Document> list = db.getCollection("stocks").find().limit(5); // limited to 5
 			// shortcut fore
 			for (Document document : list) {
 				String json = document.toJson();

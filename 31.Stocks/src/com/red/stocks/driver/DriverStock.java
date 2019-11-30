@@ -10,9 +10,14 @@ import static com.mongodb.client.model.Filters.*;
 public class DriverStock {
 
 	public static void main(String[] args) {
-
+		
+		
 		try (MongoClient mc = new MongoClient("localhost", 27017);
 				Water water = new Water();) {
+
+//		try (MongoClient mc = new MongoClient("localhost", 27017);) {
+			
+			
 			MongoDatabase db = mc.getDatabase("stockdb");
 
 //			int x = 3 / 0;
@@ -20,6 +25,8 @@ public class DriverStock {
 			Bson query = eq("symbol", "ibm-1"); // bson is binary version of json
 			Bson query2 = gt("price", 100);
 
+		
+			
 			// type wrong data type to equal to to change it quicker
 			db.getCollection("stocks").find(query2).forEach((Document d) -> System.out.println(d));
 
