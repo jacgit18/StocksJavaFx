@@ -35,7 +35,7 @@ public class StockController implements Initializable {
 	private AnchorPane ApStock;
 
 	@FXML
-	private TableView<Stock> TB;
+	private TableView<Stock> tvStocks;
 
 	@FXML
 	private TableColumn<Stock, String> CoSymbol;
@@ -84,8 +84,8 @@ public class StockController implements Initializable {
 
 	@FXML
 	void search(ActionEvent event) {
-		ObservableList<Stock> stocks = TB.getItems();
-		TB.getItems().clear();
+		ObservableList<Stock> stocks = tvStocks.getItems();
+		tvStocks.getItems().clear();
 
 		IQuery<Stock> dao = new StockDBDAO();
 
@@ -109,7 +109,7 @@ public class StockController implements Initializable {
 	void SearchMode(ActionEvent event) throws IOException {
 		Object o = event.getSource();
 		String message = "";
-		
+		 
 		Stage stage = null;
 		Parent root = null;
 		

@@ -1,13 +1,14 @@
 package com.red.stocks.dao;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.gt;
+//import static com.mongodb.client.model.Filters.eq;
+//import static com.mongodb.client.model.Filters.gt;
+import static com.mongodb.client.model.Filters.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
+//import java.util.stream.IntStream;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -15,7 +16,6 @@ import org.bson.conversions.Bson;
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.red.stocks.fxml.model.Stock;
 
@@ -50,12 +50,20 @@ public class StockDBDAO implements IQuery<Stock> {
 		
 		
 		
-		try (MongoClient mc = new MongoClient("localhost", 27017);) {
+		try (
+				MongoClient mc = new MongoClient("localhost", 27017);
+				
+				) {
 			MongoDatabase db = mc.getDatabase("stockdb");
-			
-			FindIterable<Document> list = db.getCollection("stocks").find();
+//			MongoCollection<Document> collection = db.getCollection("stocks");
+//			FindIterable<Document> list = collection.find();// Alternate
 
+
+			FindIterable<Document> list = db.getCollection("stocks").find(); 
 //			FindIterable<Document> list = db.getCollection("stocks").find().limit(5); // limited to 5
+
+
+			
 			// shortcut fore
 			for (Document document : list) {
 				String json = document.toJson();
@@ -97,10 +105,12 @@ public class StockDBDAO implements IQuery<Stock> {
 			try (MongoClient mc = new MongoClient("localhost", 27017);) {
 				
 				MongoDatabase db = mc.getDatabase("stockdb");
-				MongoCollection<Document> collection = db.getCollection("stocks");
-				
-				
-				FindIterable<Document> list = collection.find(bson);
+//				MongoCollection<Document> collection = db.getCollection("stocks");
+//				FindIterable<Document> list = collection.find(bson);// Alternate
+
+
+				FindIterable<Document> list = db.getCollection("stocks").find(bson);  
+//				FindIterable<Document> list = db.getCollection("stocks").find(bson).limit(5); // limited to 5				
 
 				for (Document document : list) {
 					String json = document.toJson();

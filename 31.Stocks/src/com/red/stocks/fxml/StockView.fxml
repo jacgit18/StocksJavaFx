@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="ApStock" prefHeight="670.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
    <children>
-      <TableView fx:id="TB" layoutX="34.0" layoutY="136.0" prefHeight="424.0" prefWidth="665.0">
+      <TableView fx:id="tvStocks" layoutX="34.0" layoutY="136.0" prefHeight="424.0" prefWidth="665.0">
         <columns>
           <TableColumn fx:id="CoSymbol" prefWidth="195.0" text="Stock Symbol">   
           <cellValueFactory>
