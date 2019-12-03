@@ -93,7 +93,7 @@ public class StockDBDAO implements IQuery<Stock> {
 					
 				}
 				
-				else if (parts[0].contentEquals("eq:") ) {
+				else if (parts[0].contentEquals("eq") ) {
 					bson = eq("symbol", parts[1]);
 					
 				}
