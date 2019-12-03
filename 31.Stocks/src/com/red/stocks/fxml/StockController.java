@@ -80,7 +80,9 @@ public class StockController implements Initializable {
 	void OnKeyReleased(KeyEvent event) {
 
 		int size = TxTfd.getText().length();
-		if (size > 0) {
+		int size2 = TxTfdPrice.getText().length();
+
+		if (size > 0 || size2 > 0) {
 			Search_btn.setDisable(false);
 
 		} else {
@@ -99,6 +101,11 @@ public class StockController implements Initializable {
 		Map<String, String> map = new HashMap<>();
 		String symbol = TxTfd.getText();
 		map.put("symbol", "eq:" + symbol);
+		
+//		String Price = TxTfdPrice.getText();
+//		float pricef = Float.parseFloat(Price); 
+//		map.put("price", "eq:" + pricef);
+		
 		List<Stock> allStocks = dao.findBy(map);
 
 		for (Stock stock : allStocks) {
