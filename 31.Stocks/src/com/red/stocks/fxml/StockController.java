@@ -65,6 +65,9 @@ public class StockController implements Initializable {
 
     @FXML
     private RadioButton PriceSearch;
+    
+    @FXML
+    private TextField TxTfdPrice;
 
     @FXML
     private ToggleGroup TGSearchMode;
