@@ -61,6 +61,10 @@ public class StockController implements Initializable {
 
     @FXML
     private RadioButton SimpleRadio;
+    
+
+    @FXML
+    private RadioButton PriceSearch;
 
     @FXML
     private ToggleGroup TGSearchMode;
@@ -121,6 +125,11 @@ public class StockController implements Initializable {
 			message =  "Advanced Search Mode ";
 			stage = (Stage) AdvancedRadio.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("StockAdvancedView.fxml"));
+		}
+		else if(o == PriceSearch ) {
+			message =  "Advanced Price Search Mode ";
+			stage = (Stage) PriceSearch.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("StockAdvancedPriceSearchView.fxml"));
 		}
 
 		Scene scene = new Scene(root); 

@@ -42,7 +42,7 @@
             
         </columns>
       </TableView>
-      <Label fx:id="LblTitle" layoutX="280.0" layoutY="25.0" text="Advanced Stock Search" />
+      <Label fx:id="LblTitle" layoutX="280.0" layoutY="25.0" text="Search By Price " />
       <Label layoutX="62.0" layoutY="78.0" text="Symbol" />
       <TextField fx:id="TxTfd" layoutX="123.0" layoutY="71.0" onKeyReleased="#OnKeyReleased" />
       <Button fx:id="Search_btn" disable="true" layoutX="294.0" layoutY="71.0" mnemonicParsing="false" onAction="#search" text="Search" />
@@ -53,7 +53,7 @@
             <ToggleGroup fx:id="TGSearchMode" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="AdvancedRadio" layoutX="456.0" layoutY="89.0" mnemonicParsing="false" onAction="#SearchMode" selected="true" text="Advanced Search" toggleGroup="$TGSearchMode" />
-      <RadioButton fx:id="PriceSearch" layoutX="568.0" layoutY="55.0" mnemonicParsing="false" onAction="#SearchMode" text="Advanced Price Search" toggleGroup="$TGSearchMode" />
+      <RadioButton fx:id="AdvancedRadio" layoutX="456.0" layoutY="89.0" mnemonicParsing="false" onAction="#SearchMode" text="Advanced Search" toggleGroup="$TGSearchMode" />
+      <RadioButton fx:id="PriceSearch" layoutX="568.0" layoutY="55.0" mnemonicParsing="false" onAction="#SearchMode" selected="true" text="Advanced Price Search" toggleGroup="$TGSearchMode" />
    </children>
 </AnchorPane>
