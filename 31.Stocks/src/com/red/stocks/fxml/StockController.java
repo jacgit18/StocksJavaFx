@@ -89,6 +89,8 @@ public class StockController implements Initializable {
 			Search_btn.setDisable(true);
 
 		}
+		
+		
 	}
 
 	@FXML

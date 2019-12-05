@@ -84,6 +84,8 @@ public class StockDBDAO implements IQuery<Stock> {
 		List<Stock> stocks = new ArrayList<Stock>();
 		Gson gson = new Gson();
 		Bson bson = new Document();
+//		Vector<String> v;
+
 
 			if (map.containsKey("symbol")) {
 				String symbolSearch = map.get("symbol");
@@ -96,11 +98,30 @@ public class StockDBDAO implements IQuery<Stock> {
 				else if (parts[0].contentEquals("eq") ) {
 					bson = eq("symbol", parts[1]);
 					
-				}
+
+			
 				
 				System.out.println(Arrays.toString(parts));
 			}
 		
+				
+				if (map.containsKey("price")) {
+					String pricearch = map.get("price");
+					String[] parts1 = pricearch.split(":");
+					float fprice = Float.parseFloat(pricearch);
+
+					if (parts[1].equalsIgnoreCase("all")) {
+						
+					}
+					else if (parts[0].contentEquals("gt") ) {
+						bson = gt("price", fprice);
+					}}
+						
+
+				
+					
+					System.out.println(Arrays.toString(parts));
+				}
 		
 			try (MongoClient mc = new MongoClient("localhost", 27017);) {
 				
