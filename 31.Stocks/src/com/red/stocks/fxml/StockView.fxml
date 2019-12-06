@@ -34,7 +34,7 @@
           
           </cellValueFactory>
                        </TableColumn>
-            <TableColumn fx:id="CoCatagories" minWidth="0.0" prefWidth="250.0" text="Catagories">
+            <TableColumn fx:id="CoCatagories" minWidth="0.0" prefWidth="159.0" text="Catagories">
                <cellValueFactory>
                   <PropertyValueFactory property="price" />
                </cellValueFactory>

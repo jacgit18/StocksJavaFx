@@ -81,7 +81,9 @@ public class StockController implements Initializable {
 
 		int size = TxTfd.getText().length();
 		int size2 = TxTfdPrice.getText().length();
-
+		
+		
+// messes with first pg search
 		if (size > 0 || size2 > 0) {
 			Search_btn.setDisable(false);
 
