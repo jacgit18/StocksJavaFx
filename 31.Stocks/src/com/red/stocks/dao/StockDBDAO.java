@@ -89,39 +89,55 @@ public class StockDBDAO implements IQuery<Stock> {
 
 			if (map.containsKey("symbol")) {
 				String symbolSearch = map.get("symbol");
-				String[] parts = symbolSearch.split(":");
+//				String[] parts = symbolSearch.split(":");
 				
-				if (parts[1].equalsIgnoreCase("all")) {
-					
+				if (! symbolSearch.equalsIgnoreCase("all")) {
+					String[] parts = symbolSearch.split(":");
+					symbolSearch = parts[1];
+				
+				
+				if (parts[0].contentEquals("eq") ) {
+					bson = eq("symbol", parts[1]);
 				}
 				
-				else if (parts[0].contentEquals("eq") ) {
-					bson = eq("symbol", parts[1]);
-					
+				
+//				else if (parts[0].contentEquals("eq") ) {
+//					bson = eq("symbol", parts[1]);
+//					
 
 			
 				
 				System.out.println(Arrays.toString(parts));
+				}
 			}
 		
 				
 				if (map.containsKey("price")) {
 					String pricearch = map.get("price");
-					String[] parts1 = pricearch.split(":");
+					String[] parts = pricearch.split(":");
+					pricearch = parts[1];
 					float fprice = Float.parseFloat(pricearch);
 
-					if (parts[1].equalsIgnoreCase("all")) {
-						
-					}
-					else if (parts[0].contentEquals("gt") ) {
-						bson = gt("price", fprice);
-					}}
+					if (parts[0].equalsIgnoreCase("gt")) {
+						bson = and(gt("price", fprice));
+	
+										}
+//					if (parts1[1].equalsIgnoreCase("all")) {
+//						
+//					}
+//					else if (parts1[0].contentEquals("gt") ) {
+//					bson = and(gt("price", fprice));
+//				}
+					
+
+					System.out.println(Arrays.toString(parts));
+
+				}
 						
 
 				
 					
-					System.out.println(Arrays.toString(parts));
-				}
+				
 		
 			try (MongoClient mc = new MongoClient("localhost", 27017);) {
 				

@@ -19,7 +19,10 @@ public class DriverStockDBDAO {
 		
 		Map<String,String> map = new HashMap<>();
 		//map.put("symbol", "eq:ibm-88");
-		map.put("price", "gt:88");
+//		map.put("symbol", "eq:googl-101");
+
+//		map.put("price", "gt:1000");
+		map.put("price", "lt:1004");
 		
 		List<Stock> list = dao.findBy(map );
 		
