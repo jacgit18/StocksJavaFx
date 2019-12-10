@@ -18,10 +18,10 @@ public class DriverStockDBDAO {
 		
 		
 		Map<String,String> map = new HashMap<>();
-		//map.put("symbol", "eq:ibm-88");
+//		map.put("symbol", "eq:ibm-88");
 //		map.put("symbol", "eq:googl-101");
 
-		map.put("price", "gt:1000");
+//		map.put("price", "gt:1000");
 //		map.put("price", "lt:150");
 		map.put("category", "eq:c2");
 		// create category logic
