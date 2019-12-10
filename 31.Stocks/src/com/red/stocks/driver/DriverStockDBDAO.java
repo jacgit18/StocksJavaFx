@@ -21,8 +21,10 @@ public class DriverStockDBDAO {
 		//map.put("symbol", "eq:ibm-88");
 //		map.put("symbol", "eq:googl-101");
 
-//		map.put("price", "gt:1000");
-		map.put("price", "lt:1004");
+		map.put("price", "gt:1000");
+//		map.put("price", "lt:150");
+		map.put("category", "eq:c2");
+		// create category logic
 		
 		List<Stock> list = dao.findBy(map );
 		

@@ -97,7 +97,10 @@ public class StockDBDAO implements IQuery<Stock> {
 				
 				
 				if (parts[0].contentEquals("eq") ) {
-					bson = eq("symbol", parts[1]);
+//					bson = eq("symbol", parts[1]);
+					bson = eq("symbol", symbolSearch);
+
+					
 				}
 				
 				
@@ -111,6 +114,32 @@ public class StockDBDAO implements IQuery<Stock> {
 				}
 			}
 		
+			
+
+			if (map.containsKey("category")) {
+				String symbolSearch = map.get("category");
+//				String[] parts = symbolSearch.split(":");
+				
+				if (! symbolSearch.equalsIgnoreCase("all")) {
+					String[] parts = symbolSearch.split(":");
+					symbolSearch = parts[1];
+				
+				
+				if (parts[0].contentEquals("eq") ) {
+					bson = and(eq("category", symbolSearch));
+				}
+				
+				
+//				else if (parts[0].contentEquals("eq") ) {
+//					bson = eq("symbol", parts[1]);
+//					
+
+			
+				
+				System.out.println(Arrays.toString(parts));
+				}
+			}
+			
 				
 				if (map.containsKey("price")) {
 					String pricearch = map.get("price");
@@ -120,6 +149,11 @@ public class StockDBDAO implements IQuery<Stock> {
 
 					if (parts[0].equalsIgnoreCase("gt")) {
 						bson = and(gt("price", fprice));
+	
+										}
+					
+					else if (parts[0].equalsIgnoreCase("lt")) {
+						bson = and(lt("price", fprice));
 	
 										}
 //					if (parts1[1].equalsIgnoreCase("all")) {
