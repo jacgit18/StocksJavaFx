@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
-// Code From Video
 public interface IQuery <T> {
 	
 	List <T> findAll();
@@ -13,9 +11,4 @@ public interface IQuery <T> {
 		return new ArrayList<>();	
 		
 	}
-
-	
-	
-	
-	
 }

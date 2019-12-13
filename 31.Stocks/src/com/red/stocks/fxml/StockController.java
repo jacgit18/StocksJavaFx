@@ -75,23 +75,12 @@ public class StockController implements Initializable {
     @FXML
     private RadioButton AdvancedRadio;
 
+	// controller should clean just be code for gui separations of concerns
 
 	@FXML
 	void OnKeyReleased(KeyEvent event) {
 
-		int size = TxTfd.getText().length();
-		int size2 = TxTfdPrice.getText().length();
-		
-		
-// messes with first pg search
-		if (size > 0 || size2 > 0) {
-			Search_btn.setDisable(false);
-
-		} else {
-			Search_btn.setDisable(true);
-
-		}
-		
+	
 		
 	}
 

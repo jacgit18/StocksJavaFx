@@ -6,6 +6,7 @@ import static com.mongodb.client.model.Filters.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 //import java.util.stream.IntStream;
@@ -16,6 +17,7 @@ import org.bson.conversions.Bson;
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.red.stocks.fxml.model.Stock;
 
@@ -44,11 +46,9 @@ public class StockDBDAO implements IQuery<Stock> {
 //	return list;
 //}
 
-	public List<Stock> findAll() {
+	public List<Stock> findAll_OG() {
 		Gson gson = new Gson();
 		List<Stock> stocks = new ArrayList<>();
-		
-		
 		
 		try (
 				MongoClient mc = new MongoClient("localhost", 27017);
@@ -62,8 +62,6 @@ public class StockDBDAO implements IQuery<Stock> {
 			FindIterable<Document> list = db.getCollection("stocks").find(); 
 //			FindIterable<Document> list = db.getCollection("stocks").find().limit(5); // limited to 5
 
-
-			
 			// shortcut fore
 			for (Document document : list) {
 				String json = document.toJson();
@@ -80,123 +78,96 @@ public class StockDBDAO implements IQuery<Stock> {
 	}
 	
 	@Override
+	public List<Stock> findAll() {
+		
+		Map<String, String> map = new HashMap<>();
+		return this.findBy(map); 
+	}
+
+	@Override
 	public List<Stock> findBy(Map<String, String> map) {
+		
 		List<Stock> stocks = new ArrayList<Stock>();
 		Gson gson = new Gson();
+		
 		Bson bson = new Document();
-//		Vector<String> v;
-
-
-			if (map.containsKey("symbol")) {
-				String symbolSearch = map.get("symbol");
-//				String[] parts = symbolSearch.split(":");
-				
-				if (! symbolSearch.equalsIgnoreCase("all")) {
-					String[] parts = symbolSearch.split(":");
-					symbolSearch = parts[1];
-				
-				
-				if (parts[0].contentEquals("eq") ) {
-//					bson = eq("symbol", parts[1]);
-					bson = eq("symbol", symbolSearch);
-
-					
-				}
-				
-				
-//				else if (parts[0].contentEquals("eq") ) {
-//					bson = eq("symbol", parts[1]);
-//					
-
-			
-				
-				System.out.println(Arrays.toString(parts));
-				}
-			}
 		
+		if ( map.containsKey("symbol") ) {
+			String symbolSearch = map.get("symbol");
+			String[] parts = symbolSearch.split(":");
 			
-
-			if (map.containsKey("category")) {
-				String symbolSearch = map.get("category");
-//				String[] parts = symbolSearch.split(":");
+			if (parts[1].equalsIgnoreCase("all")) {
 				
-				if (! symbolSearch.equalsIgnoreCase("all")) {
-					String[] parts = symbolSearch.split(":");
-					symbolSearch = parts[1];
-				
-				
-				if (parts[0].contentEquals("eq") ) {
-					bson = and(eq("category", symbolSearch));
-				}
-				
-				
-//				else if (parts[0].contentEquals("eq") ) {
-//					bson = eq("symbol", parts[1]);
-//					
-
-			
-				
-				System.out.println(Arrays.toString(parts));
-				}
+			}			
+			else if (parts[0].contentEquals("eq")) {
+				bson = eq("symbol", parts[1]);
 			}
 			
-				
-				if (map.containsKey("price")) {
-					String pricearch = map.get("price");
-					String[] parts = pricearch.split(":");
-					pricearch = parts[1];
-					float fprice = Float.parseFloat(pricearch);
-
-					if (parts[0].equalsIgnoreCase("gt")) {
-						bson = and(gt("price", fprice));
-	
-										}
-					
-					else if (parts[0].equalsIgnoreCase("lt")) {
-						bson = and(lt("price", fprice));
-	
-										}
-//					if (parts1[1].equalsIgnoreCase("all")) {
-//						
-//					}
-//					else if (parts1[0].contentEquals("gt") ) {
-//					bson = and(gt("price", fprice));
-//				}
-					
-
-					System.out.println(Arrays.toString(parts));
-
-				}
-						
-
-				
-					
-				
+			System.out.println(Arrays.toString(parts));
+			
+		}
 		
-			try (MongoClient mc = new MongoClient("localhost", 27017);) {
+		
+		if ( map.containsKey("price") ) {
+			String priceSearch = map.get("price");
+			String[] parts = priceSearch.split(":");
+			
+			if (parts[1].equalsIgnoreCase("all")) {
+				
+			}			
+			else if (parts[0].contentEquals("gt")) {
+				float price = Float.parseFloat(parts[1]);
+				bson = and(bson, gt("price", price));
+			}
+			else if (parts[0].contentEquals("lt")) {
+				float price = Float.parseFloat(parts[1]);
+				bson = and(bson, lt("price", price));
+			}
+			
+			System.out.println(Arrays.toString(parts));
+			
+		}
+		
+		if ( map.containsKey("category") ) {
+			String symbolSearch = map.get("category");
+			String[] parts = symbolSearch.split(":");
+			
+			if (parts[1].equalsIgnoreCase("all")) {
+				
+			}			
+			else if (parts[0].contentEquals("eq")) {
+				bson = and(bson, eq("category", parts[1]) ) ;
+			}			
+			System.out.println(Arrays.toString(parts));
+			
+		}
+		
+		
+		
+		try (MongoClient mc =  new MongoClient("localhost", 27017);) {
 				
 				MongoDatabase db = mc.getDatabase("stockdb");
 //				MongoCollection<Document> collection = db.getCollection("stocks");
 //				FindIterable<Document> list = collection.find(bson);// Alternate
-
-
-				FindIterable<Document> list = db.getCollection("stocks").find(bson);  
+				
+				MongoCollection<Document> collection = db.getCollection("stocks");			
 //				FindIterable<Document> list = db.getCollection("stocks").find(bson).limit(5); // limited to 5				
 
-				for (Document document : list) {
-					String json = document.toJson();
-					Stock stock = gson.fromJson(json, Stock.class);
-					stocks.add(stock);
-				}
 				
-			} catch (Exception e) {
-				
+			    FindIterable<Document> list = collection.find(bson);
+			    
+			    for (Document document : list) {
+			    	String json = document.toJson();
+			    	Stock stock = gson.fromJson(json, Stock.class);
+			    	stocks.add(stock);
+				}		    			 
+			 
+			}
+			catch (Exception e){
 				e.printStackTrace();
-				}		
-			
-			
-			return stocks;
+			}
+		
+		return stocks;
 	}
-
 
 }
