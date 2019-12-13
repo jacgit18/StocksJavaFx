@@ -1,0 +1,33 @@
+.apStock1{
+		   -fx-background-color: #1261B7;
+	
+}
+
+.apStock2{
+		   -fx-background-color: #5e0d0d;
+	
+}
+.position{
+	
+	-fx-text-align: center;
+	
+}
+
+
+#tvStock{
+			   -fx-background-color: #ffffff;
+	
+}
+
+#btnSearch{
+		   -fx-border-color:  #e8d102;
+		   -fx-background-color: black;
+		   
+	
+}
+
+
+.name {
+   -fx-text-fill: #e8d102;
+   
+}

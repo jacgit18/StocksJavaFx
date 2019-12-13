@@ -46,36 +46,36 @@ public class StockDBDAO implements IQuery<Stock> {
 //	return list;
 //}
 
-	public List<Stock> findAll_OG() {
-		Gson gson = new Gson();
-		List<Stock> stocks = new ArrayList<>();
-		
-		try (
-				MongoClient mc = new MongoClient("localhost", 27017);
-				
-				) {
-			MongoDatabase db = mc.getDatabase("stockdb");
-//			MongoCollection<Document> collection = db.getCollection("stocks");
-//			FindIterable<Document> list = collection.find();// Alternate
-
-
-			FindIterable<Document> list = db.getCollection("stocks").find(); 
-//			FindIterable<Document> list = db.getCollection("stocks").find().limit(5); // limited to 5
-
-			// shortcut fore
-			for (Document document : list) {
-				String json = document.toJson();
-				Stock stock = gson.fromJson(json, Stock.class);
-				stocks.add(stock);
-			}
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}		
-		
-		
-		return stocks;
-	}
+//	public List<Stock> findAll_OG() {
+//		Gson gson = new Gson();
+//		List<Stock> stocks = new ArrayList<>();
+//		
+//		try (
+//				MongoClient mc = new MongoClient("localhost", 27017);
+//				
+//				) {
+//			MongoDatabase db = mc.getDatabase("stockdb");
+////			MongoCollection<Document> collection = db.getCollection("stocks");
+////			FindIterable<Document> list = collection.find();// Alternate
+//
+//
+//			FindIterable<Document> list = db.getCollection("stocks").find(); 
+////			FindIterable<Document> list = db.getCollection("stocks").find().limit(5); // limited to 5
+//
+//			// shortcut fore
+//			for (Document document : list) {
+//				String json = document.toJson();
+//				Stock stock = gson.fromJson(json, Stock.class);
+//				stocks.add(stock);
+//			}
+//			
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}		
+//		
+//		
+//		return stocks;
+//	}
 	
 	@Override
 	public List<Stock> findAll() {
