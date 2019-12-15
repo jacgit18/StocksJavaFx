@@ -49,6 +49,12 @@ public class StockController implements Initializable {
 
 	@FXML
 	private TableColumn<Stock, Float> colPrice;
+	
+    @FXML
+    private TableColumn<Stock, Float> colNet;
+
+    @FXML
+    private TableColumn<Stock, Float> colDividend;
 
 	@FXML
 	private Label lblTitle;
