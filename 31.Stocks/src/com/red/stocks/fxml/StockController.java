@@ -1,7 +1,9 @@
 package com.red.stocks.fxml;
 
+import java.awt.Checkbox;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,8 @@ import java.util.ResourceBundle;
 import com.red.stocks.dao.StockDBDAO;
 import com.red.stocks.dao.CategoryDAO;
 import com.red.stocks.dao.IQuery;
+import com.red.stocks.dao.SectorDAO;
+import com.red.stocks.fxml.model.Sector;
 import com.red.stocks.fxml.model.Stock;
 
 import javafx.collections.ObservableList;
@@ -21,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -176,6 +181,9 @@ public class StockController implements Initializable {
 		}
 	}
 
+	// why put sector as both types
+	private static List<Sector> sectors = new ArrayList<Sector>();
+	
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// Caused by: java.lang.NullPointerException this error means we need to avoid
@@ -187,6 +195,20 @@ public class StockController implements Initializable {
 			cbCategroy.getItems().addAll("All");
 			cbCategroy.getItems().addAll(categories);
 			cbCategroy.setValue("All");
+
+		}
+		// fix StockDao
+		if (fpSector != null) {
+			SectorDAO sectdao = new SectorDAO();
+			sectors = sectdao.findAll();
+			
+			for (Sector sector : sectors) {
+				CheckBox chkBox = new CheckBox(sector.getSectorinfo() + " - " + 
+			sector.getSectorDescription()); 
+				fpSector.getChildren().add(chkBox);
+
+			}
+			
 
 		}
 		

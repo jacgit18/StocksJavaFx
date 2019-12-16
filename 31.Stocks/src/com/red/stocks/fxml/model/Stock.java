@@ -3,42 +3,49 @@ package com.red.stocks.fxml.model;
 public class Stock {
 	
 	private String symbol, name,category;
-	private int netIncome;
-	private float dividendYield;
+//	private int netIncome;
+//	private float dividendYield;
 	private Float price;
 
 
-	
-	public Stock(String symbol, String name, String category, int netIncome, float dividendYield, Float price) {
+	public Stock(String symbol, String name, String category, Float price) {
 		super();
 		this.symbol = symbol;
 		this.name = name;
 		this.category = category;
-		this.netIncome = netIncome;
-		this.dividendYield = dividendYield;
 		this.price = price;
 	}
-
 	
-	
-	public int getNetIncome() {
-		return netIncome;
-	}
-
-
-	public void setNetIncome(int netIncome) {
-		this.netIncome = netIncome;
-	}
-
-
-	public float getDividendYield() {
-		return dividendYield;
-	}
-
-
-	public void setDividendYield(float dividendYield) {
-		this.dividendYield = dividendYield;
-	}
+//	public Stock(String symbol, String name, String category, int netIncome, float dividendYield, Float price) {
+//		super();
+//		this.symbol = symbol;
+//		this.name = name;
+//		this.category = category;
+//		this.netIncome = netIncome;
+//		this.dividendYield = dividendYield;
+//		this.price = price;
+//	}
+//
+//	
+//	
+//	public int getNetIncome() {
+//		return netIncome;
+//	}
+//
+//
+//	public void setNetIncome(int netIncome) {
+//		this.netIncome = netIncome;
+//	}
+//
+//
+//	public float getDividendYield() {
+//		return dividendYield;
+//	}
+//
+//
+//	public void setDividendYield(float dividendYield) {
+//		this.dividendYield = dividendYield;
+//	}
 
 
 	public String getCategory() {
@@ -78,11 +85,15 @@ public class Stock {
 	}
 
 	
+//	@Override
+//	public String toString() {
+//		return "Stock [symbol=" + symbol + ", name=" + name + ", category=" + category + ", netIncome=" + netIncome
+//				+ ", dividendYield=" + dividendYield + ", price=" + price + "]";
+//	}
 	
 	@Override
 	public String toString() {
-		return "Stock [symbol=" + symbol + ", name=" + name + ", category=" + category + ", netIncome=" + netIncome
-				+ ", dividendYield=" + dividendYield + ", price=" + price + "]";
+		return "Stock [symbol=" + symbol + ", name=" + name + ", category=" + category +  ", price=" + price + "]";
 	}
 
 	
