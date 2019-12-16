@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -96,6 +97,10 @@ public class StockController implements Initializable {
 	private FlowPane fpSector;
 	
 	// Pie Chart Skeleton
+	
+    @FXML
+    private RadioButton rbPiechart;
+	
     @FXML
     private AnchorPane apLayout;
 
@@ -105,6 +110,9 @@ public class StockController implements Initializable {
     @FXML
     private PieChart pieProduct;
 
+    // edit Symbols later
+    
+    
 	@FXML
 	void onKeyReleased(KeyEvent event) {
 		int size = txtField.getText().length();
@@ -124,10 +132,7 @@ public class StockController implements Initializable {
 			this.simpleSearch();
 
 		}else if (rbAdvancedfilter.isSelected()) {
-			this.simpleSearch();
-
-		}else if (rbAdvancedfilter.isSelected()) {
-			this.advanceSearch();
+			this.advanceFilterSearch();
 
 		}
 
@@ -163,12 +168,9 @@ public class StockController implements Initializable {
 
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText(); // just added
-		// think about changing data type
-		String netIncome = txtField.getText(); // just added
-		String dividendYield = txtField.getText(); // just added
-
+		
 		String price = txtField.getText();
-		String category = cbCategroy.getValue();
+		String category = cbCategroy.getValue();// dropbox not used yet
 
 		map.put("symbol", "eq:" + symbol); // just added
 		map.put("price", "gt:" + price);
@@ -179,6 +181,51 @@ public class StockController implements Initializable {
 		for (Stock stock : allStocks) {
 			stocks.add(stock);
 		}
+	}
+	
+	private void advanceFilterSearch() {
+		ObservableList<Stock> stocks = tvStock.getItems();
+
+		tvStock.getItems().clear();
+
+		IQuery<Stock> dao = new StockDBDAO();
+
+		Map<String, String> map = new HashMap<>();
+		String symbol = txtField.getText(); // just added
+//		// think about changing data type
+//		String netIncome = txtField.getText(); // just added
+//		String dividendYield = txtField.getText(); // just added
+		String price = txtField.getText();
+//		
+		ObservableList<Node> selectedfilter = fpSector.getChildren();
+		ArrayList<String> items = new ArrayList<>();
+		for (Node node : selectedfilter) {
+//			System.out.println(node);// first test
+			CheckBox cb = (CheckBox) node;
+			if (cb.isSelected()) {
+				items.add(cb.getUserData().toString());
+				
+			}
+//			System.out.println(cb.getUserData() + " " + cb.isSelected());
+			// second test 
+		}
+		
+		String [] selectedFilter = items.stream().toArray(String[]::new);
+		
+		System.out.println(items);
+		
+		String categories = String.join(",", selectedFilter);
+		
+		map.put("symbol", "eq:" + symbol); // just added
+		map.put("categories", categories); // problem
+//		map.put("price", "gt:" + price);
+
+
+		List<Stock> allStocks = dao.findBy(map);
+
+//		for (Stock stock : allStocks) {
+			stocks.addAll(allStocks);
+//		}
 	}
 
 	// why put sector as both types
@@ -205,6 +252,9 @@ public class StockController implements Initializable {
 			for (Sector sector : sectors) {
 				CheckBox chkBox = new CheckBox(sector.getSectorinfo() + " - " + 
 			sector.getSectorDescription()); 
+				// data type taken is an object meaning it takes in any data type
+				// so when you retrieve the data downcast it
+				chkBox.setUserData(sector.getSectorinfo());
 				fpSector.getChildren().add(chkBox);
 
 			}
@@ -245,6 +295,11 @@ public class StockController implements Initializable {
 			message = "advanced filter mode selected ";
 			stage = (Stage) rbAdvancedfilter.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("StockAdvancedWithCheckBoxesView.fxml"));
+		}
+		else if (o == rbPiechart) {
+			message = "pie chart mode selected ";
+			stage = (Stage) rbPiechart.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("PieChartView.fxml"));
 		}
 
 

@@ -11,6 +11,10 @@ import com.red.stocks.fxml.model.Stock;
 
 public class DriverStockDBDAO {
 
+	/**
+	 * More robust tester
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 //		t1();

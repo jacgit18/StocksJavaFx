@@ -15,34 +15,34 @@
 	<children>
 		<TableView fx:id="tvStock" layoutX="51.0" layoutY="163.0" prefHeight="480.0" prefWidth="809.0">
 			<columns>
-				<TableColumn fx:id="colSymbol" prefWidth="112.0" text="Stock Symbol">
+				<TableColumn fx:id="colSymbol" prefWidth="130.0" text="Stock Symbol">
 
 					<cellValueFactory>
 						<PropertyValueFactory property="symbol" />
 					</cellValueFactory>
 
 				</TableColumn>
-				<TableColumn fx:id="colPrice" prefWidth="124.0" text="Current Price">
+				<TableColumn fx:id="colPrice" prefWidth="130.0" text="Current Price">
 					<cellValueFactory>
 						<PropertyValueFactory property="price" />
 					</cellValueFactory>
 				</TableColumn>
-            <TableColumn fx:id="colCategory" prefWidth="74.0" text="Category">
+            <TableColumn fx:id="colCategory" prefWidth="130.0" text="Category">
                <cellValueFactory>
                   <PropertyValueFactory property="category" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colNet" prefWidth="105.0" text="Net Income">
+            <TableColumn fx:id="colNet" prefWidth="130.0" text="Net Income">
                <cellValueFactory>
                   <PropertyValueFactory property="category" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colDividend" prefWidth="127.0" text="Dividend Yeild">
+            <TableColumn fx:id="colDividend" prefWidth="130.0" text="Dividend Yeild">
                <cellValueFactory>
                   <PropertyValueFactory property="category" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colSector" prefWidth="127.0" text="Sector">
+            <TableColumn fx:id="colSector" prefWidth="157.0" text="Sector">
                <cellValueFactory>
                   <PropertyValueFactory property="category" />
                </cellValueFactory>
@@ -59,12 +59,17 @@
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="rbAdvanced" layoutX="697.0" layoutY="80.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
+      <RadioButton fx:id="rbAdvanced" layoutX="697.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
       <Label fx:id="cbCategory" layoutX="190.0" layoutY="28.0" styleClass="name" text="Category/Sector" />
       <FlowPane fx:id="fpSector" layoutX="190.0" layoutY="46.0" prefHeight="84.0" prefWidth="493.0" />
-      <RadioButton fx:id="rbAdvancedfilter" layoutX="697.0" layoutY="110.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="advanced search filter">
+      <RadioButton fx:id="rbAdvancedfilter" layoutX="695.0" layoutY="97.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="advanced search filter">
          <toggleGroup>
-            <ToggleGroup fx:id="tgSearchMode1" />
+            <ToggleGroup fx:id="tgSearchMode" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbPiechart" layoutX="696.0" layoutY="121.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Pie Chart">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup>
       </RadioButton>
 	</children>

@@ -91,7 +91,7 @@ public class StockDBDAO implements IQuery<Stock> {
 		Gson gson = new Gson();
 		
 		Bson bson = new Document();
-		
+		// this isnt adding to bson its replacing it
 		if ( map.containsKey("symbol") ) {
 			String symbolSearch = map.get("symbol");
 			String[] parts = symbolSearch.split(":");
@@ -112,12 +112,12 @@ public class StockDBDAO implements IQuery<Stock> {
 			String priceSearch = map.get("price");
 			String[] parts = priceSearch.split(":");
 			
-			if (parts[1].equalsIgnoreCase("all")) {
+			if (!parts[1].equalsIgnoreCase("all")) {
 				
-			}			
-			else if (parts[0].contentEquals("gt")) {
+			    if (parts[0].contentEquals("gt")) {
 				float price = Float.parseFloat(parts[1]);
 				bson = and(bson, gt("price", price));
+			}
 			}
 			
 			System.out.println(Arrays.toString(parts));
@@ -142,7 +142,7 @@ public class StockDBDAO implements IQuery<Stock> {
 			String catagoriesSearch = map.get("categories");
 			String[] categories = catagoriesSearch.split(",");
 			
-			if (!categories[1].equalsIgnoreCase("all")) {
+			if (!catagoriesSearch.contains("all")) {
 					
 				bson = and(bson, in("category", categories) ) ;
 			}			

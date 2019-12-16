@@ -1,14 +1,9 @@
 package com.red.stocks.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.bson.Document;
-
 import com.mongodb.MongoClient;
-import com.mongodb.client.DistinctIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -25,9 +20,10 @@ public class SectorDAO implements IQuery<Sector> {
 		try (MongoClient mc =  new MongoClient("localhost", 27017);) {
 				
 				MongoDatabase db = mc.getDatabase("stockdb");
+				
 //				DistinctIterable<Sector> distinctCategory 
 //				= db.getCollection("sectors").distinct("sector", Sector.class);	
-				
+//				
 //				list = new ArrayList<>();
 //				for (Sector category : distinctCategory) {
 //					list.add(category);

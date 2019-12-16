@@ -21,12 +21,12 @@
 					</cellValueFactory>
 
 				</TableColumn>
-				<TableColumn fx:id="colName" prefWidth="278.0" text="stock name">
+				<TableColumn fx:id="colName" prefWidth="451.0" text="stock name">
 					<cellValueFactory>
 						<PropertyValueFactory property="name" />
 					</cellValueFactory>
 				</TableColumn>
-				<TableColumn fx:id="colPrice" prefWidth="157.0" text="current price">
+				<TableColumn fx:id="colPrice" prefWidth="200.0" text="current price">
 					<cellValueFactory>
 						<PropertyValueFactory property="price" />
 					</cellValueFactory>
@@ -39,14 +39,19 @@
       <Button fx:id="btnSearch" disable="true" layoutX="197.0" layoutY="45.0" mnemonicParsing="false" onAction="#search" styleClass="name" text="Search" />
       <Label fx:id="lblMessage" layoutX="24.0" layoutY="556.0" prefHeight="17.0" prefWidth="434.0" />
       <Label layoutX="24.0" layoutY="138.0" prefHeight="17.0" prefWidth="434.0" styleClass="name" text="Enter in All to display all rows" />
-      <RadioButton fx:id="rbSimple" layoutX="697.0" layoutY="49.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="simple search">
+      <RadioButton fx:id="rbSimple" layoutX="697.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="simple search">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="rbAdvanced" layoutX="697.0" layoutY="80.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
-      <RadioButton fx:id="rbAdvancedfilter" layoutX="697.0" layoutY="110.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search filter">
+      <RadioButton fx:id="rbAdvanced" layoutX="697.0" layoutY="64.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
+      <RadioButton fx:id="rbAdvancedfilter" layoutX="697.0" layoutY="94.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search filter">
          <toggleGroup>
-            <ToggleGroup fx:id="tgSearchMode1" />
+            <ToggleGroup fx:id="tgSearchMode" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbPiechart" layoutX="697.0" layoutY="117.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Pie Chart">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup>
       </RadioButton>
 	</children>
