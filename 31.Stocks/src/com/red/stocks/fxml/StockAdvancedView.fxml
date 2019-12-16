@@ -11,9 +11,9 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="apStock" prefHeight="594.0" prefWidth="910.0" styleClass="apStock2" stylesheets="@Stockviewlooks.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
+<AnchorPane fx:id="apStock" prefHeight="684.0" prefWidth="910.0" styleClass="apStock2" stylesheets="@Stockviewlooks.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
 	<children>
-		<TableView fx:id="tvStock" layoutX="51.0" layoutY="118.0" prefHeight="447.0" prefWidth="809.0">
+		<TableView fx:id="tvStock" layoutX="54.0" layoutY="175.0" prefHeight="480.0" prefWidth="809.0">
 			<columns>
 				<TableColumn fx:id="colSymbol" prefWidth="112.0" text="Stock Symbol">
 
@@ -54,13 +54,18 @@
       <TextField fx:id="txtField" layoutX="61.0" layoutY="46.0" onKeyReleased="#onKeyReleased" prefHeight="26.0" prefWidth="122.0" />
       <Button fx:id="btnSearch" disable="true" layoutX="197.0" layoutY="45.0" mnemonicParsing="false" onAction="#search" styleClass="name" text="Search" />
       <Label fx:id="lblMessage" layoutX="24.0" layoutY="556.0" prefHeight="17.0" prefWidth="434.0" />
-      <Label layoutX="24.0" layoutY="91.0" prefHeight="17.0" prefWidth="434.0" styleClass="name" text="Display prices greater than, or All represent show all data" />
-      <RadioButton fx:id="rbSimple" layoutX="745.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="simple search">
+      <Label layoutX="24.0" layoutY="147.0" prefHeight="17.0" prefWidth="434.0" styleClass="name" text="Display prices greater than, or All represent show all data" />
+      <RadioButton fx:id="rbSimple" layoutX="718.0" layoutY="42.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="simple search">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="rbAdvanced" layoutX="745.0" layoutY="59.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
+      <RadioButton fx:id="rbAdvanced" layoutX="718.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
       <ComboBox fx:id="cbCategroy" layoutX="439.0" layoutY="38.0" prefHeight="25.0" prefWidth="93.0" />
       <Label fx:id="cbCategory" layoutX="373.0" layoutY="43.0" styleClass="name" text="Category" />
+      <RadioButton fx:id="rbAdvancedfilter" layoutX="718.0" layoutY="107.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search filter">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgSearchMode1" />
+         </toggleGroup>
+      </RadioButton>
 	</children>
 </AnchorPane>

@@ -10,9 +10,9 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="apStock" prefHeight="594.0" prefWidth="910.0" styleClass="apStock1" stylesheets="@Stockviewlooks.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
+<AnchorPane fx:id="apStock" prefHeight="684.0" prefWidth="910.0" styleClass="apStock1" stylesheets="@Stockviewlooks.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
 	<children>
-		<TableView fx:id="tvStock" layoutX="51.0" layoutY="127.0" prefHeight="447.0" prefWidth="809.0">
+		<TableView fx:id="tvStock" layoutX="51.0" layoutY="175.0" prefHeight="480.0" prefWidth="809.0">
 			<columns>
 				<TableColumn fx:id="colSymbol" prefWidth="157.0" text="stock symbol">
 
@@ -38,11 +38,16 @@
       <TextField fx:id="txtField" layoutX="86.0" layoutY="32.0" onKeyReleased="#onKeyReleased" prefHeight="26.0" prefWidth="115.0" />
       <Button fx:id="btnSearch" disable="true" layoutX="217.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" styleClass="name" text="Search" />
       <Label fx:id="lblMessage" layoutX="24.0" layoutY="556.0" prefHeight="17.0" prefWidth="434.0" />
-      <Label layoutX="24.0" layoutY="103.0" prefHeight="17.0" prefWidth="434.0" styleClass="name" text="Enter in All to display all rows" />
-      <RadioButton fx:id="rbSimple" layoutX="714.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="simple search">
+      <Label layoutX="14.0" layoutY="149.0" prefHeight="17.0" prefWidth="434.0" styleClass="name" text="Enter in All to display all rows" />
+      <RadioButton fx:id="rbSimple" layoutX="714.0" layoutY="21.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="simple search">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="rbAdvanced" layoutX="714.0" layoutY="73.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
+      <RadioButton fx:id="rbAdvanced" layoutX="714.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
+      <RadioButton fx:id="rbAdvancedfilter" layoutX="714.0" layoutY="82.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search filter">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgSearchMode1" />
+         </toggleGroup>
+      </RadioButton>
 	</children>
 </AnchorPane>

@@ -12,7 +12,10 @@
 	-fx-text-align: center;
 	
 }
-
+ #fpSector{
+		   -fx-border-color:  #e8d102;
+	
+}
 
 #tvStock{
 			   -fx-background-color: #ffffff;

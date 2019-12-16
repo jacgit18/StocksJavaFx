@@ -80,12 +80,15 @@ public class StockController implements Initializable {
 
 	@FXML
 	private RadioButton rbAdvanced;
+	
+	@FXML
+	private RadioButton rbAdvancedfilter;
 
 	@FXML
 	private ComboBox<String> cbCategroy;
 	
-	 @FXML
-	    private FlowPane fpSector;
+	@FXML
+	private FlowPane fpSector;
 	
 	// Pie Chart Skeleton
     @FXML
@@ -115,7 +118,15 @@ public class StockController implements Initializable {
 		} else if (rbSimple.isSelected()) {
 			this.simpleSearch();
 
+		}else if (rbAdvancedfilter.isSelected()) {
+			this.simpleSearch();
+
+		}else if (rbAdvancedfilter.isSelected()) {
+			this.advanceSearch();
+
 		}
+
+		
 
 	}
 
@@ -208,7 +219,12 @@ public class StockController implements Initializable {
 			message = "advanced mode selected ";
 			stage = (Stage) rbAdvanced.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("StockAdvancedView.fxml"));
+		}else if (o == rbAdvancedfilter) {
+			message = "advanced filter mode selected ";
+			stage = (Stage) rbAdvancedfilter.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("StockAdvancedWithCheckBoxesView.fxml"));
 		}
+
 
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
