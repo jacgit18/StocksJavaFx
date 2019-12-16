@@ -119,10 +119,6 @@ public class StockDBDAO implements IQuery<Stock> {
 				float price = Float.parseFloat(parts[1]);
 				bson = and(bson, gt("price", price));
 			}
-			else if (parts[0].contentEquals("lt")) {
-				float price = Float.parseFloat(parts[1]);
-				bson = and(bson, lt("price", price));
-			}
 			
 			System.out.println(Arrays.toString(parts));
 			
@@ -142,7 +138,46 @@ public class StockDBDAO implements IQuery<Stock> {
 			
 		}
 		
-		
+		if ( map.containsKey("categories") ) {
+			String catagoriesSearch = map.get("categories");
+			String[] categories = catagoriesSearch.split(",");
+			
+			if (!categories[1].equalsIgnoreCase("all")) {
+					
+				bson = and(bson, in("category", categories) ) ;
+			}			
+			System.out.println(Arrays.toString(categories));
+			
+		}
+//		// edit
+//		if ( map.containsKey("netIncome") ) {
+//			String symbolSearch = map.get("netIncome");
+//			String[] parts = symbolSearch.split(":");
+//			
+//			if (parts[1].equalsIgnoreCase("all")) {
+//				
+//			}			
+//			else if (parts[0].contentEquals("eq")) {
+//				bson = and(bson, eq("netIncome", parts[1]) ) ;
+//			}			
+//			System.out.println(Arrays.toString(parts));
+//			
+//		}
+//		
+//		// edit
+//		if ( map.containsKey("dividendYield") ) {
+//			String symbolSearch = map.get("dividendYield");
+//			String[] parts = symbolSearch.split(":");
+//			
+//			if (parts[1].equalsIgnoreCase("all")) {
+//				
+//			}			
+//			else if (parts[0].contentEquals("eq")) {
+//				bson = and(bson, eq("dividendYield", parts[1]) ) ;
+//			}			
+//			System.out.println(Arrays.toString(parts));
+//			
+//		}
 		
 		try (MongoClient mc =  new MongoClient("localhost", 27017);) {
 				

@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -55,6 +56,9 @@ public class StockController implements Initializable {
 
     @FXML
     private TableColumn<Stock, Float> colDividend;
+    
+    @FXML
+    private TableColumn<Stock, Float>  colSector;
 
 	@FXML
 	private Label lblTitle;
@@ -79,6 +83,9 @@ public class StockController implements Initializable {
 
 	@FXML
 	private ComboBox<String> cbCategroy;
+	
+	 @FXML
+	    private FlowPane fpSector;
 	
 	// Pie Chart Skeleton
     @FXML
@@ -139,10 +146,15 @@ public class StockController implements Initializable {
 		IQuery<Stock> dao = new StockDBDAO();
 
 		Map<String, String> map = new HashMap<>();
-//			String symbol = txtField.getText();
+		String symbol = txtField.getText(); // just added
+		// think about changing data type
+		String netIncome = txtField.getText(); // just added
+		String dividendYield = txtField.getText(); // just added
+
 		String price = txtField.getText();
 		String category = cbCategroy.getValue();
 
+		map.put("symbol", "eq:" + symbol); // just added
 		map.put("price", "gt:" + price);
 		map.put("category", "eq:" + category);
 
@@ -166,6 +178,17 @@ public class StockController implements Initializable {
 			cbCategroy.setValue("All");
 
 		}
+		
+		
+//		lblTitle.setText("1st FXML Project");
+//		
+//		productDAO dao = new productDAO();
+//		List<Product> list = dao.findAll();
+//		for (Product product : list) {
+//			PieChart.Data slice1 = new PieChart.Data(product.getName(), product.getPrice());
+//			pieProduct.getData().add(slice1);
+//
+//		}
 	}
 
 	@FXML

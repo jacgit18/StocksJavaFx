@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane fx:id="apStock" prefHeight="653.0" prefWidth="910.0" styleClass="apStock2" stylesheets="@Stockviewlooks.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
+	<children>
+		<TableView fx:id="tvStock" layoutX="51.0" layoutY="163.0" prefHeight="480.0" prefWidth="809.0">
+			<columns>
+				<TableColumn fx:id="colSymbol" prefWidth="112.0" text="Stock Symbol">
+
+					<cellValueFactory>
+						<PropertyValueFactory property="symbol" />
+					</cellValueFactory>
+
+				</TableColumn>
+				<TableColumn fx:id="colPrice" prefWidth="124.0" text="Current Price">
+					<cellValueFactory>
+						<PropertyValueFactory property="price" />
+					</cellValueFactory>
+				</TableColumn>
+            <TableColumn fx:id="colCategory" prefWidth="74.0" text="Category">
+               <cellValueFactory>
+                  <PropertyValueFactory property="category" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colNet" prefWidth="105.0" text="Net Income">
+               <cellValueFactory>
+                  <PropertyValueFactory property="category" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colDividend" prefWidth="127.0" text="Dividend Yeild">
+               <cellValueFactory>
+                  <PropertyValueFactory property="category" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colSector" prefWidth="127.0" text="Sector">
+               <cellValueFactory>
+                  <PropertyValueFactory property="category" />
+               </cellValueFactory>
+            </TableColumn>
+			</columns>
+		</TableView>
+		<Label fx:id="lblTitle" layoutX="388.0" layoutY="6.0" prefHeight="17.0" prefWidth="155.0" styleClass="name" text="Advanced Stock Search" />
+      <Label layoutX="24.0" layoutY="51.0" styleClass="name" text="Price" />
+      <TextField fx:id="txtField" layoutX="61.0" layoutY="46.0" onKeyReleased="#onKeyReleased" prefHeight="26.0" prefWidth="122.0" />
+      <Button fx:id="btnSearch" disable="true" layoutX="803.0" layoutY="104.0" mnemonicParsing="false" onAction="#search" styleClass="name" text="Search" />
+      <Label fx:id="lblMessage" layoutX="24.0" layoutY="556.0" prefHeight="17.0" prefWidth="434.0" />
+      <Label layoutX="24.0" layoutY="138.0" prefHeight="17.0" prefWidth="434.0" styleClass="name" text="Display prices greater than, or All represent show all data" />
+      <RadioButton fx:id="rbSimple" layoutX="745.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="simple search">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgSearchMode" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rbAdvanced" layoutX="745.0" layoutY="59.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
+      <Label fx:id="cbCategory" layoutX="190.0" layoutY="28.0" styleClass="name" text="Category/Sector" />
+      <FlowPane fx:id="fpSector" layoutX="190.0" layoutY="46.0" prefHeight="84.0" prefWidth="493.0" styleClass="apStock1" />
+	</children>
+</AnchorPane>

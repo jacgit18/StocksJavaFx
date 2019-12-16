@@ -3,20 +3,44 @@ package com.red.stocks.fxml.model;
 public class Stock {
 	
 	private String symbol, name,category;
-	
+	private int netIncome;
+	private float dividendYield;
 	private Float price;
 
 
-	public Stock(String symbol, String name, Float price, String category) {
+	
+	public Stock(String symbol, String name, String category, int netIncome, float dividendYield, Float price) {
 		super();
 		this.symbol = symbol;
 		this.name = name;
-		this.price = price;
 		this.category = category;
+		this.netIncome = netIncome;
+		this.dividendYield = dividendYield;
+		this.price = price;
 	}
 
 	
 	
+	public int getNetIncome() {
+		return netIncome;
+	}
+
+
+	public void setNetIncome(int netIncome) {
+		this.netIncome = netIncome;
+	}
+
+
+	public float getDividendYield() {
+		return dividendYield;
+	}
+
+
+	public void setDividendYield(float dividendYield) {
+		this.dividendYield = dividendYield;
+	}
+
+
 	public String getCategory() {
 		return category;
 	}
@@ -53,9 +77,12 @@ public class Stock {
 		this.price = price;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "Stock [symbol=" + symbol + ", name=" + name + ", price=" + price + ", category=" + category + "]";
+		return "Stock [symbol=" + symbol + ", name=" + name + ", category=" + category + ", netIncome=" + netIncome
+				+ ", dividendYield=" + dividendYield + ", price=" + price + "]";
 	}
 
 	
