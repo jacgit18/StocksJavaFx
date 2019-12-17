@@ -32,7 +32,6 @@ public class SectorDAO implements IQuery<Sector> {
 				MongoCollection<Document> collection = db.getCollection("sectors");	
 				 FindIterable<Document> stocks = collection.find();
 				 
-					
 
 				    
 				    for (Document document : stocks) {
