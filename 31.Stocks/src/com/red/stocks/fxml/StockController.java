@@ -195,6 +195,7 @@ public class StockController implements Initializable {
 		Object o = event.getSource();
 		String message = "";
 
+		try {
 		Stage stage = null;
 		Parent root = null;
 
@@ -221,6 +222,9 @@ public class StockController implements Initializable {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		lblMessage.setText(message + Math.random());
 	}
@@ -234,21 +238,22 @@ public class StockController implements Initializable {
 
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText();
-		String category = cbCategroy != null ? cbCategroy.getValue(): "All";
-		// dropbox not used yet
 		String price = txtField.getText();
 
 		
 		map.put("symbol", "eq:" + symbol);
-		map.put("category", "eq:" + category);
 		map.put("price", "gt:" + price);
 
 
 		List<Stock> allStocks = dao.findBy(map);
 
-		for (Stock stock : allStocks) {
-			stocks.add(stock);
-		}
+		stocks.addAll(allStocks);
+			
+
+//			for (Stock stock : allStocks) {
+//				stocks.add(stock);
+//			}
+		
 	}
 
 	private void advanceSearch() {
@@ -270,10 +275,13 @@ public class StockController implements Initializable {
 		map.put("category", "eq:" + category);
 
 		List<Stock> allStocks = dao.findBy(map);
+		
+		stocks.addAll(allStocks);
 
-		for (Stock stock : allStocks) {
-			stocks.add(stock);
-		}
+
+//		for (Stock stock : allStocks) {
+//			stocks.add(stock);
+//		}
 	}
 	
 	private void advanceFilterSearch() {
