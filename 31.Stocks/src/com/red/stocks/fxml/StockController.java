@@ -293,6 +293,7 @@ public class StockController implements Initializable {
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText(); // just added
 		String price = txtField.getText();
+//		String categories = "";
 
 //		// think about changing data type
 //		String netIncome = txtField.getText(); // just added
@@ -318,7 +319,7 @@ public class StockController implements Initializable {
 		String categories = String.join(",", selectedFilter);
 		
 		map.put("symbol", "eq:" + symbol); // just added
-		map.put("categories", categories); // problem
+		map.put("categories", categories); 
 		map.put("price", "gt:" + price);
 
 
