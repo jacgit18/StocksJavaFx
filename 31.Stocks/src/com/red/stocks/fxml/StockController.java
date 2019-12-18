@@ -238,21 +238,24 @@ public class StockController implements Initializable {
 
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText();
-		String price = txtField.getText();
-
-		
 		map.put("symbol", "eq:" + symbol);
-		map.put("price", "gt:" + price);
+		
+		
+		// not dynamic 
+//		String price = txtField.getText();
+//
+//		
+//		map.put("price", "gt:" + price);
 
 
 		List<Stock> allStocks = dao.findBy(map);
 
-		stocks.addAll(allStocks);
+//		stocks.addAll(allStocks);
 			
 
-//			for (Stock stock : allStocks) {
-//				stocks.add(stock);
-//			}
+			for (Stock stock : allStocks) {
+				stocks.add(stock);
+			}
 		
 	}
 
@@ -270,7 +273,7 @@ public class StockController implements Initializable {
 		String price = txtField.getText();
 
 
-		map.put("symbol", "eq:" + symbol); // just added
+//		map.put("symbol", "eq:" + symbol); // just added
 		map.put("price", "gt:" + price);
 		map.put("category", "eq:" + category);
 
@@ -318,7 +321,7 @@ public class StockController implements Initializable {
 		
 		String categories = String.join(",", selectedFilter);
 		
-		map.put("symbol", "eq:" + symbol); // just added
+//		map.put("symbol", "eq:" + symbol); // just added
 		map.put("categories", categories); 
 		map.put("price", "gt:" + price);
 
