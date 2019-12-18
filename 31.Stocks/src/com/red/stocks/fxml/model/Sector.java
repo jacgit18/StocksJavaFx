@@ -2,21 +2,20 @@ package com.red.stocks.fxml.model;
 
 public class Sector {
 	
-	private String sectorinfo, sectorDescription;
-	
-	
-	public Sector(String sectorinfo, String sectorDescription) {
+	private String sector, sectorDescription;
+
+	public Sector(String sector, String sectorDescription) {
 		super();
-		this.sectorinfo = sectorinfo;
+		this.sector = sector;
 		this.sectorDescription = sectorDescription;
 	}
 
-	public String getSectorinfo() {
-		return sectorinfo;
+	public String getSector() {
+		return sector;
 	}
 
-	public void setSectorinfo(String sectorinfo) {
-		this.sectorinfo = sectorinfo;
+	public void setSector(String sector) {
+		this.sector = sector;
 	}
 
 	public String getSectorDescription() {
@@ -29,8 +28,10 @@ public class Sector {
 
 	@Override
 	public String toString() {
-		return "Sector [sector=" + sectorinfo + ", sectorDescription=" + sectorDescription + "]";
+		return "Sector [sector=" + sector + ", sectorDescription=" + sectorDescription + "]";
 	}
+	
+	
 
 
 	

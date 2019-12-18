@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="apStock" prefHeight="684.0" prefWidth="910.0" styleClass="apStock1" stylesheets="@Stockviewlooks.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.stocks.fxml.StockController">
@@ -42,7 +43,10 @@
       <RadioButton fx:id="rbSimple" layoutX="697.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="simple search">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
-         </toggleGroup></RadioButton>
+         </toggleGroup>
+         <effect>
+            <Glow />
+         </effect></RadioButton>
       <RadioButton fx:id="rbAdvanced" layoutX="697.0" layoutY="64.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search" toggleGroup="$tgSearchMode" />
       <RadioButton fx:id="rbAdvancedfilter" layoutX="697.0" layoutY="94.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search filter">
          <toggleGroup>

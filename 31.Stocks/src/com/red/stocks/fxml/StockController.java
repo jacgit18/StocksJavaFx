@@ -1,6 +1,5 @@
 package com.red.stocks.fxml;
 
-import java.awt.Checkbox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -250,11 +249,11 @@ public class StockController implements Initializable {
 			sectors = sectdao.findAll();
 			
 			for (Sector sector : sectors) {
-				CheckBox chkBox = new CheckBox(sector.getSectorinfo() + " - " + 
+				CheckBox chkBox = new CheckBox(sector.getSector() + " - " + 
 			sector.getSectorDescription()); 
 				// data type taken is an object meaning it takes in any data type
 				// so when you retrieve the data downcast it
-				chkBox.setUserData(sector.getSectorinfo());
+				chkBox.setUserData(sector.getSector());
 				fpSector.getChildren().add(chkBox);
 
 			}
@@ -262,15 +261,13 @@ public class StockController implements Initializable {
 
 		}
 		
-		
-//		lblTitle.setText("1st FXML Project");
-//		
-//		productDAO dao = new productDAO();
-//		List<Product> list = dao.findAll();
-//		for (Product product : list) {
-//			PieChart.Data slice1 = new PieChart.Data(product.getName(), product.getPrice());
+//		SectorDAO dao = new SectorDAO();
+//		List<Sector> list = dao.findAll();
+//		for (Sector sec : list) {
+//			PieChart.Data slice1 = 
+//					new PieChart.Data(sec.getSector(), stock.getPrice());
 //			pieProduct.getData().add(slice1);
-//
+//		
 //		}
 	}
 
