@@ -2,8 +2,8 @@ package com.red.stocks.driver;
 
 import java.util.List;
 
-import com.red.stocks.dao.productDAO;
-import com.red.stocks.fxml.model.Product;
+import com.red.stocks.dao.stockPieDAO;
+import com.red.stocks.fxml.model.Stock;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,9 +21,9 @@ public class PieChartExperiments2 extends Application {
 
 		
 		// now dynamic
-		productDAO dao = new productDAO();
-		List<Product> list = dao.findAll();
-		for (Product product : list) {
+		stockPieDAO dao = new stockPieDAO();
+		List<Stock> list = dao.findAll();
+		for (Stock product : list) {
 			PieChart.Data slice1 = new PieChart.Data(product.getName(), product.getPrice());
 			pieChart.getData().add(slice1);
 
