@@ -1,4 +1,4 @@
-package com.red.stocks.fxml;
+package com.red.stocks.driver;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

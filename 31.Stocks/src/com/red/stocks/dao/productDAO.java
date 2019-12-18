@@ -1,4 +1,4 @@
-package com.red.stocks.fxml;
+package com.red.stocks.dao;
 
 import java.util.ArrayList;
 import java.util.List;

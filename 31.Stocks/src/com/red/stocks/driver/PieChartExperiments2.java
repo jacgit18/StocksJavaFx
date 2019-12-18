@@ -1,7 +1,8 @@
-package com.red.stocks.fxml;
+package com.red.stocks.driver;
 
 import java.util.List;
 
+import com.red.stocks.dao.productDAO;
 import com.red.stocks.fxml.model.Product;
 
 import javafx.application.Application;
