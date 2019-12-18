@@ -12,6 +12,15 @@
 		   -fx-background-color: #e8d102;
 	
 }
+
+.sec{
+			   -fx-min-width: 200;
+			   -fx-padding: 3;
+			   -fx-border-color: black;
+			    -fx-border-width: 5px 3px 5px 3px;
+				-fx-border-style: solid;
+	
+}
 .position{
 	
 	-fx-text-align: center;
@@ -36,6 +45,7 @@
 
 
 .name {
-   -fx-text-fill: #e8d102;
+   -fx-text-fill: #e8d102; 
    
 }
+

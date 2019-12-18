@@ -141,15 +141,21 @@ public class StockController implements Initializable {
 
 	private void simpleSearch() {
 		ObservableList<Stock> stocks = tvStock.getItems();
-
 		tvStock.getItems().clear();
 
 		IQuery<Stock> dao = new StockDBDAO();
 
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText();
+		String category = cbCategroy != null ? cbCategroy.getValue(): "All";
+		// dropbox not used yet
+		String price = txtField.getText();
 
+		
 		map.put("symbol", "eq:" + symbol);
+		map.put("category", "eq:" + category);
+		map.put("price", "gt:" + price);
+
 
 		List<Stock> allStocks = dao.findBy(map);
 
@@ -160,7 +166,6 @@ public class StockController implements Initializable {
 
 	private void advanceSearch() {
 		ObservableList<Stock> stocks = tvStock.getItems();
-
 		tvStock.getItems().clear();
 
 		IQuery<Stock> dao = new StockDBDAO();
@@ -168,8 +173,10 @@ public class StockController implements Initializable {
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText(); // just added
 		
+		String category = cbCategroy != null ? cbCategroy.getValue(): "All";
+		// dropbox not used yet
 		String price = txtField.getText();
-		String category = cbCategroy.getValue();// dropbox not used yet
+
 
 		map.put("symbol", "eq:" + symbol); // just added
 		map.put("price", "gt:" + price);
@@ -184,17 +191,17 @@ public class StockController implements Initializable {
 	
 	private void advanceFilterSearch() {
 		ObservableList<Stock> stocks = tvStock.getItems();
-
 		tvStock.getItems().clear();
 
 		IQuery<Stock> dao = new StockDBDAO();
 
 		Map<String, String> map = new HashMap<>();
 		String symbol = txtField.getText(); // just added
+		String price = txtField.getText();
+
 //		// think about changing data type
 //		String netIncome = txtField.getText(); // just added
 //		String dividendYield = txtField.getText(); // just added
-		String price = txtField.getText();
 //		
 		ObservableList<Node> selectedfilter = fpSector.getChildren();
 		ArrayList<String> items = new ArrayList<>();
@@ -217,7 +224,7 @@ public class StockController implements Initializable {
 		
 		map.put("symbol", "eq:" + symbol); // just added
 		map.put("categories", categories); // problem
-//		map.put("price", "gt:" + price);
+		map.put("price", "gt:" + price);
 
 
 		List<Stock> allStocks = dao.findBy(map);
@@ -253,6 +260,7 @@ public class StockController implements Initializable {
 			sector.getSectorDescription()); 
 				// data type taken is an object meaning it takes in any data type
 				// so when you retrieve the data downcast it
+				chkBox.getStyleClass().add("sector");
 				chkBox.setUserData(sector.getSector());
 				fpSector.getChildren().add(chkBox);
 
@@ -260,12 +268,19 @@ public class StockController implements Initializable {
 			
 
 		}
-		
-//		SectorDAO dao = new SectorDAO();
-//		List<Sector> list = dao.findAll();
-//		for (Sector sec : list) {
+		// Pie test
+        
+//		Map<String, String> map = new HashMap<>();
+//		String symbol = colSymbol.getText(); // just added
+//		String price = colPrice.getText();
+//		map.put("sector", "eq:" + symbol); // just added
+//		map.put("price", "gt:" + price);
+//
+//		StockDBDAO dao = new StockDBDAO();
+//		List<Stock> list = dao.findBy(map);
+//		for (Stock sec : list) {
 //			PieChart.Data slice1 = 
-//					new PieChart.Data(sec.getSector(), stock.getPrice());
+//					new PieChart.Data(sec.getSymbol(),sec.getPrice());
 //			pieProduct.getData().add(slice1);
 //		
 //		}
