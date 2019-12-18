@@ -108,36 +108,123 @@ public class StockController implements Initializable {
 
     @FXML
     private PieChart pieProduct;
+    
+	// why put sector as both types
+	private static List<Sector> sectors = new ArrayList<Sector>();
+	
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		// Caused by: java.lang.NullPointerException this error means we need to avoid
+		// null so we created a if statement to do this
+		if (cbCategroy != null) {
 
-    // edit Symbols later
+			CategoryDAO dao = new CategoryDAO();
+			List<String> categories = dao.findAll();
+			cbCategroy.getItems().addAll("All");
+			cbCategroy.getItems().addAll(categories);
+			cbCategroy.setValue("All");
+
+		}
+		// fix StockDao
+		if (fpSector != null) {
+			SectorDAO sectdao = new SectorDAO();
+			sectors = sectdao.findAll();
+			
+			for (Sector sector : sectors) {
+				CheckBox chkBox = new CheckBox(sector.getSector() + " - " + 
+			sector.getSectorDescription()); 
+				// data type taken is an object meaning it takes in any data type
+				// so when you retrieve the data downcast it
+				chkBox.getStyleClass().add("sector");
+				chkBox.setUserData(sector.getSector());
+				fpSector.getChildren().add(chkBox);
+
+			}
+			
+
+		}
+		// Pie test
+        
+//		Map<String, String> map = new HashMap<>();
+//		String symbol = colSymbol.getText(); // just added
+//		String price = colPrice.getText();
+//		map.put("sector", "eq:" + symbol); // just added
+//		map.put("price", "gt:" + price);
+//
+//		StockDBDAO dao = new StockDBDAO();
+//		List<Stock> list = dao.findBy(map);
+//		for (Stock sec : list) {
+//			PieChart.Data slice1 = 
+//					new PieChart.Data(sec.getSymbol(),sec.getPrice());
+//			pieProduct.getData().add(slice1);
+//		
+//		}
+	}
+    
     
     
 	@FXML
 	void onKeyReleased(KeyEvent event) {
+		System.out.println(event);
 		int size = txtField.getText().length();
-		if (size > 0) {
-			btnSearch.setDisable(false);
-		} else {
+		if (size == 0) {
 			btnSearch.setDisable(true);
+		} else {
+			btnSearch.setDisable(false);
 		}
 
 	}
-
+  
 	@FXML
 	void search(ActionEvent event) {
-		if (rbAdvanced.isSelected()) {
-			this.advanceSearch();
-		} else if (rbSimple.isSelected()) {
+		if (rbSimple.isSelected()) {
 			this.simpleSearch();
+		} else if (rbAdvanced.isSelected()) {
+			this.advanceSearch();
 
 		}else if (rbAdvancedfilter.isSelected()) {
 			this.advanceFilterSearch();
 
 		}
-
-		
-
 	}
+	
+
+	@FXML
+	void searchMode(ActionEvent event) throws IOException {
+
+		Object o = event.getSource();
+		String message = "";
+
+		Stage stage = null;
+		Parent root = null;
+
+		if (o == rbSimple) {
+			message = "simple mode selected ";
+			stage = (Stage) rbAdvanced.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("StockView.fxml"));
+		} else if (o == rbAdvanced) {
+			message = "advanced mode selected ";
+			stage = (Stage) rbAdvanced.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("StockAdvancedView.fxml"));
+		}else if (o == rbAdvancedfilter) {
+			message = "advanced filter mode selected ";
+			stage = (Stage) rbAdvancedfilter.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("StockAdvancedWithCheckBoxesView.fxml"));
+		}
+		else if (o == rbPiechart) {
+			message = "pie chart mode selected ";
+			stage = (Stage) rbPiechart.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("PieChartView.fxml"));
+		}
+
+
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
+		lblMessage.setText(message + Math.random());
+	}
+
 
 	private void simpleSearch() {
 		ObservableList<Stock> stocks = tvStock.getItems();
@@ -234,92 +321,6 @@ public class StockController implements Initializable {
 //		}
 	}
 
-	// why put sector as both types
-	private static List<Sector> sectors = new ArrayList<Sector>();
-	
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		// Caused by: java.lang.NullPointerException this error means we need to avoid
-		// null so we created a if statement to do this
-		if (cbCategroy != null) {
 
-			CategoryDAO dao = new CategoryDAO();
-			List<String> categories = dao.findAll();
-			cbCategroy.getItems().addAll("All");
-			cbCategroy.getItems().addAll(categories);
-			cbCategroy.setValue("All");
-
-		}
-		// fix StockDao
-		if (fpSector != null) {
-			SectorDAO sectdao = new SectorDAO();
-			sectors = sectdao.findAll();
-			
-			for (Sector sector : sectors) {
-				CheckBox chkBox = new CheckBox(sector.getSector() + " - " + 
-			sector.getSectorDescription()); 
-				// data type taken is an object meaning it takes in any data type
-				// so when you retrieve the data downcast it
-				chkBox.getStyleClass().add("sector");
-				chkBox.setUserData(sector.getSector());
-				fpSector.getChildren().add(chkBox);
-
-			}
-			
-
-		}
-		// Pie test
-        
-//		Map<String, String> map = new HashMap<>();
-//		String symbol = colSymbol.getText(); // just added
-//		String price = colPrice.getText();
-//		map.put("sector", "eq:" + symbol); // just added
-//		map.put("price", "gt:" + price);
-//
-//		StockDBDAO dao = new StockDBDAO();
-//		List<Stock> list = dao.findBy(map);
-//		for (Stock sec : list) {
-//			PieChart.Data slice1 = 
-//					new PieChart.Data(sec.getSymbol(),sec.getPrice());
-//			pieProduct.getData().add(slice1);
-//		
-//		}
-	}
-
-	@FXML
-	void searchMode(ActionEvent event) throws IOException {
-
-		Object o = event.getSource();
-		String message = "";
-
-		Stage stage = null;
-		Parent root = null;
-
-		if (o == rbSimple) {
-			message = "simple mode selected ";
-			stage = (Stage) rbAdvanced.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("StockView.fxml"));
-		} else if (o == rbAdvanced) {
-			message = "advanced mode selected ";
-			stage = (Stage) rbAdvanced.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("StockAdvancedView.fxml"));
-		}else if (o == rbAdvancedfilter) {
-			message = "advanced filter mode selected ";
-			stage = (Stage) rbAdvancedfilter.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("StockAdvancedWithCheckBoxesView.fxml"));
-		}
-		else if (o == rbPiechart) {
-			message = "pie chart mode selected ";
-			stage = (Stage) rbPiechart.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("PieChartView.fxml"));
-		}
-
-
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-
-		lblMessage.setText(message + Math.random());
-	}
 
 }
