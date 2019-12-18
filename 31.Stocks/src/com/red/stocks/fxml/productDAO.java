@@ -3,6 +3,8 @@ package com.red.stocks.fxml;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.red.stocks.fxml.model.Product;
+
 public class productDAO {
 
 	public List<Product> findAll() {

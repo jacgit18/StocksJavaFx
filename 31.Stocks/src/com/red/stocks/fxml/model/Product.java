@@ -1,4 +1,4 @@
-package com.red.stocks.fxml;
+package com.red.stocks.fxml.model;
 
 public class Product {
 

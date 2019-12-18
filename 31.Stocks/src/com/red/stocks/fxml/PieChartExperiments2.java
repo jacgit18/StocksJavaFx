@@ -2,6 +2,8 @@ package com.red.stocks.fxml;
 
 import java.util.List;
 
+import com.red.stocks.fxml.model.Product;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
