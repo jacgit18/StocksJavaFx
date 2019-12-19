@@ -98,6 +98,10 @@ public class StockController implements Initializable {
 	
 	@FXML
     private CheckBox chkAll;
+	
+	  @FXML
+	   private Button btnAll;
+
 
 	
 	// Pie Chart Skeleton
@@ -116,6 +120,8 @@ public class StockController implements Initializable {
     
 	// why put sector as both types
 	private static List<Sector> sectors = new ArrayList<Sector>();
+	
+	private CheckBox chkBox;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -138,7 +144,7 @@ public class StockController implements Initializable {
 
 			
 			for (Sector sector : sectors) {
-				CheckBox chkBox = new CheckBox(sector.getSector() + " - " + 
+				 this.chkBox = new CheckBox(sector.getSector() + " - " + 
 			sector.getSectorDescription()); 
 				// data type taken is an object meaning it takes in any data type
 				// so when you retrieve the data downcast it
@@ -147,6 +153,10 @@ public class StockController implements Initializable {
 				fpSector.getChildren().add(chkBox);
 
 			}
+			CheckBox chBoxAll = new CheckBox();
+			chBoxAll.setText("All");
+			chBoxAll.setUserData("e-01,e-02,e-03,e-04,e-05,e-06,e-07,e-08,e-09,e-10,e-11,");
+			fpSector.getChildren().addAll(chBoxAll);  
 //			if (condition) {
 //				
 //			}
@@ -330,17 +340,13 @@ public class StockController implements Initializable {
 				items.add(cb.getUserData().toString());
 				
 			}
-//			else if (!cb.isSelected()) {
-//				
-//				items.add(cb.getUserData().toString());
-//
-////				items.stream().filter(e -> {
-////			    	 Map<String,String> map1 = new HashMap<>();
-////			    	 map1.put(items.add(cb.getUserData().toString()));
-////					
-////				});
-//
-//			}
+			else if (!cb.isSelected()) {
+				
+				
+
+			}
+			
+			
 			System.out.println(cb.getUserData() + " " + cb.isSelected());
 			// second test 
 		}
