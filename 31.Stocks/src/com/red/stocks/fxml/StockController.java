@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import com.red.stocks.dao.StockDBDAO;
 import com.red.stocks.dao.CategoryDAO;
@@ -95,6 +96,10 @@ public class StockController implements Initializable {
 	@FXML
 	private FlowPane fpSector;
 	
+	@FXML
+    private CheckBox chkAll;
+
+	
 	// Pie Chart Skeleton
 	
     @FXML
@@ -130,6 +135,8 @@ public class StockController implements Initializable {
 			SectorDAO sectdao = new SectorDAO();
 			sectors = sectdao.findAll();
 			
+
+			
 			for (Sector sector : sectors) {
 				CheckBox chkBox = new CheckBox(sector.getSector() + " - " + 
 			sector.getSectorDescription()); 
@@ -140,7 +147,11 @@ public class StockController implements Initializable {
 				fpSector.getChildren().add(chkBox);
 
 			}
-			
+//			if (condition) {
+//				
+//			}
+
+
 
 		}
 		// Pie test
@@ -287,6 +298,11 @@ public class StockController implements Initializable {
 //		}
 	}
 	
+	private List<String> items = new ArrayList<>();// changed to list
+	private CheckBox cb;
+	int i = 0;
+
+	
 	private void advanceFilterSearch() {
 		ObservableList<Stock> stocks = tvStock.getItems();
 		tvStock.getItems().clear();
@@ -301,17 +317,27 @@ public class StockController implements Initializable {
 //		// think about changing data type
 //		String netIncome = txtField.getText(); // just added
 //		String dividendYield = txtField.getText(); // just added
-//		
 		ObservableList<Node> selectedfilter = fpSector.getChildren();
-		ArrayList<String> items = new ArrayList<>();
 		for (Node node : selectedfilter) {
 //			System.out.println(node);// first test
-			CheckBox cb = (CheckBox) node;
+			cb = (CheckBox) node;
+//			CheckBox array = cb; 
 			if (cb.isSelected()) {
 				items.add(cb.getUserData().toString());
 				
 			}
-//			System.out.println(cb.getUserData() + " " + cb.isSelected());
+//			else if (!cb.isSelected()) {
+//				
+//				items.add(cb.getUserData().toString());
+//
+////				items.stream().filter(e -> {
+////			    	 Map<String,String> map1 = new HashMap<>();
+////			    	 map1.put(items.add(cb.getUserData().toString()));
+////					
+////				});
+//
+//			}
+			System.out.println(cb.getUserData() + " " + cb.isSelected());
 			// second test 
 		}
 		
@@ -323,7 +349,9 @@ public class StockController implements Initializable {
 		
 //		map.put("symbol", "eq:" + symbol); // just added
 		map.put("categories", categories); 
-		map.put("price", "gt:" + price);
+//		map.put("price", "gt:" + price);
+
+		map.put("price", "lt:" + price);
 
 
 		List<Stock> allStocks = dao.findBy(map);
@@ -333,6 +361,14 @@ public class StockController implements Initializable {
 //		}
 	}
 
+	public void actionPerformed (ActionEvent e) {
+		for (int i = 0; i < items.size(); i++) {
+			if (!cb.isSelected()) {
+				items.add(cb.getUserData().toString());
 
+
+			}
+		}
+	}
 
 }

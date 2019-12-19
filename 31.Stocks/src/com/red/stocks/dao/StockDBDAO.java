@@ -117,6 +117,9 @@ public class StockDBDAO implements IQuery<Stock> {
 			    if (parts[0].contentEquals("gt")) {
 				float price = Float.parseFloat(parts[1]);
 				bson = and(bson, gt("price", price));
+			}else if (parts[0].contentEquals("lt")) {
+				float price = Float.parseFloat(parts[1]);
+				bson = and(bson, lt("price", price));
 			}
 			}
 			

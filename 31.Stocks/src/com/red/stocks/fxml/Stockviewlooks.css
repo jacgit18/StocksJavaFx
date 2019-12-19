@@ -27,7 +27,9 @@
 	
 }
  #fpSector{
-		   -fx-border-color:  #e8d102;
+		   -fx-border-color:  green;
+		   -fx-background-color: #e8d102;
+		   
 	
 }
 
