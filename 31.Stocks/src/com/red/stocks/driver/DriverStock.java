@@ -3,17 +3,27 @@ package com.red.stocks.driver;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.red.stocks.dao.Water;
+import com.red.stocks.fxml.model.Sector;
+import com.red.stocks.fxml.model.Stock;
 
 import static com.mongodb.client.model.Filters.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DriverStock {
 
 	public static void main(String[] args) {
+		
+		
+
 		// closing Data Base and prevent leaking example
 		
 //		try (MongoClient mc = new MongoClient("localhost", 27017);
@@ -23,7 +33,7 @@ public class DriverStock {
 			
 			
 			MongoDatabase db = mc.getDatabase("stockdb");
-			MongoCollection<Document> collection = db.getCollection("sectors");	
+			MongoCollection<Document> collection = db.getCollection("stockdb");	
 			
 			 FindIterable<Document> stocks = collection.find();
 			    

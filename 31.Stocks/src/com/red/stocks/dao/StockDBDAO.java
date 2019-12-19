@@ -153,19 +153,20 @@ public class StockDBDAO implements IQuery<Stock> {
 			
 		}
 //		// edit
-//		if ( map.containsKey("netIncome") ) {
-//			String symbolSearch = map.get("netIncome");
-//			String[] parts = symbolSearch.split(":");
-//			
-//			if (parts[1].equalsIgnoreCase("all")) {
-//				
-//			}			
-//			else if (parts[0].contentEquals("eq")) {
-//				bson = and(bson, eq("netIncome", parts[1]) ) ;
-//			}			
-//			System.out.println(Arrays.toString(parts));
-//			
-//		}
+		if (map.containsKey("netIncome")) {
+			String sectorSearch = map.get("netIncome");
+			String[] parts = sectorSearch.split(":");
+
+			if (parts[1].equalsIgnoreCase("all")) {
+
+			} else if (parts[0].contentEquals("eq")) {
+				bson = and(bson,  eq("sector", parts[1]));
+			}
+
+			System.out.println(Arrays.toString(parts));
+
+		}
+
 //		
 //		// edit
 //		if ( map.containsKey("dividendYield") ) {

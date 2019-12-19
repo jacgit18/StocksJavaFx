@@ -25,9 +25,9 @@ public class Stock {
 //		this.dividendYield = dividendYield;
 //		this.price = price;
 //	}
-//
-//	
-//	
+
+	
+	
 //	public int getNetIncome() {
 //		return netIncome;
 //	}

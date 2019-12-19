@@ -136,6 +136,15 @@ public class StockController implements Initializable {
 			cbCategroy.setValue("All");
 
 		}
+		
+//		StockDBDAO dao = new StockDBDAO();
+//		List<Stock> net = dao.get
+//		colNet.getItems();
+	
+		
+//			colNet.getItems().addAll("All");
+//		colNet.getItems().addAll(categories);
+//		colNet.setValue("All");
 		// fix StockDao
 		if (fpSector != null) {
 			SectorDAO sectdao = new SectorDAO();

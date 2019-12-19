@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.red.stocks.dao.IQuery;
+import com.red.stocks.dao.SectorDAO;
 import com.red.stocks.dao.StockDBDAO;
 import com.red.stocks.dao.CategoryDAO;
+import com.red.stocks.fxml.model.Sector;
 import com.red.stocks.fxml.model.Stock;
 
 public class DriverStockDBDAO {
@@ -18,7 +20,9 @@ public class DriverStockDBDAO {
 	public static void main(String[] args) {
 		
 //		t1();
-		t2();
+//		t2();
+		t3();
+
 //		CategoryRunner();
 
 	}
@@ -33,6 +37,12 @@ public class DriverStockDBDAO {
 		for (Stock stock : list) {
 			System.out.println(stock);
 		}
+	}
+	
+	public static void t3() {
+
+//		IQuery<Stock> dao = new Stock();
+//		dao.findAll().forEach(System.out::println);
 	}
 	
 	// Specific item in list 
