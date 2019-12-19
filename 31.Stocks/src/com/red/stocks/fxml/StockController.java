@@ -267,7 +267,8 @@ public class StockController implements Initializable {
 			for (Stock stock : allStocks) {
 				stocks.add(stock);
 			}
-		
+			lblMessage.setText(" Number of stocks:  " +  allStocks.size());
+
 	}
 
 	private void advanceSearch() {
@@ -290,12 +291,15 @@ public class StockController implements Initializable {
 
 		List<Stock> allStocks = dao.findBy(map);
 		
-		stocks.addAll(allStocks);
+//		stocks.addAll(allStocks);
 
 
-//		for (Stock stock : allStocks) {
-//			stocks.add(stock);
-//		}
+		for (Stock stock : allStocks) {
+			stocks.add(stock);
+
+		}
+		lblMessage.setText(" Number of stocks:  " +  allStocks.size());
+
 	}
 	
 	private List<String> items = new ArrayList<>();// changed to list
@@ -357,8 +361,15 @@ public class StockController implements Initializable {
 		List<Stock> allStocks = dao.findBy(map);
 
 //		for (Stock stock : allStocks) {
-			stocks.addAll(allStocks);
+//			stocks.addAll(allStocks);
 //		}
+			
+			for (Stock stock : allStocks) {
+				stocks.add(stock);
+				lblMessage.setText(" Number of stocks:  " +  allStocks.size());
+
+			}
+
 	}
 
 	public void actionPerformed (ActionEvent e) {
