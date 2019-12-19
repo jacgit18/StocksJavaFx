@@ -50,7 +50,7 @@
             </TableColumn>
 			</columns>
 		</TableView>
-		<Label fx:id="lblTitle" layoutX="482.0" layoutY="20.0" prefHeight="17.0" prefWidth="155.0" styleClass="name" text="Advanced Stock Search" />
+		<Label fx:id="lblTitle" layoutX="482.0" layoutY="20.0" prefHeight="17.0" prefWidth="155.0" styleClass="name" text="Dividends Stock Search" />
       <Label layoutX="24.0" layoutY="47.0" styleClass="name" text="Price" />
       <TextField fx:id="txtField" layoutX="79.0" layoutY="46.0" onKeyReleased="#onKeyReleased" prefHeight="26.0" prefWidth="122.0" />
       <Button fx:id="btnSearch" disable="true" layoutX="210.0" layoutY="46.0" mnemonicParsing="false" onAction="#search" styleClass="name" text="Search" />
@@ -68,16 +68,17 @@
             <String fx:value="sec" />
             <String fx:value="apStock1" />
          </styleClass></FlowPane>
-      <RadioButton fx:id="rbAdvancedfilter" layoutX="894.0" layoutY="249.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="advanced search filter">
+      <RadioButton fx:id="rbAdvancedfilter" layoutX="894.0" layoutY="249.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="advanced search filter">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="rbPiechart" layoutX="893.0" layoutY="273.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Pie Chart">
+      <RadioButton fx:id="rbPiechart" layoutX="894.0" layoutY="284.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Pie Chart">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup>
       </RadioButton>
+      <RadioButton fx:id="rbDiv" layoutX="895.0" layoutY="266.0" mnemonicParsing="false" onAction="#searchMode" selected="true" styleClass="name" text="Dividendsearch filter" toggleGroup="$tgSearchMode" />
 	</children>
    <styleClass>
       <String fx:value="apStock2" />

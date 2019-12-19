@@ -102,6 +102,8 @@ public class StockController implements Initializable {
 	  @FXML
 	   private Button btnAll;
 
+	    @FXML
+	    private RadioButton rbDiv;
 
 	
 	// Pie Chart Skeleton

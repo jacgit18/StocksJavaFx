@@ -73,11 +73,12 @@
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="rbPiechart" layoutX="893.0" layoutY="273.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Pie Chart">
+      <RadioButton fx:id="rbPiechart" layoutX="894.0" layoutY="301.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Pie Chart">
          <toggleGroup>
             <ToggleGroup fx:id="tgSearchMode" />
          </toggleGroup>
       </RadioButton>
+      <RadioButton fx:id="rbDiv" layoutX="894.0" layoutY="277.0" mnemonicParsing="false" onAction="#searchMode" styleClass="name" text="Dividendsearch filter" toggleGroup="$tgSearchMode" />
 	</children>
    <styleClass>
       <String fx:value="apStock2" />
